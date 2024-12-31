@@ -91,6 +91,10 @@ static int	handle_format(const char *format, va_list args)
 		count += handle_str_char(*format, args);
 	else if (*format == 'X')
 		count += handle_str_char(*format, args);
+	else
+	{
+		count += write(1, format, 1);
+	}
 	return (count);
 }
 
@@ -105,13 +109,18 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
+			if (*(format + 1) == '\0')
+			{
+				count += write(1, "%", 1);
+				return (count);
+			}	
+
 			format++;
 			count += handle_format(format, args);
 		}
 		else
 		{
-			write(1, format, 1);
-			count++;
+			count += write(1, format, 1);
 		}
 		format++;
 	}
