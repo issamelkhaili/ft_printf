@@ -1,4 +1,3 @@
-
 #include "printf.h"
 #include <stdio.h>
 #include <limits.h>
@@ -80,4 +79,3 @@ int		main(void)
 	len = ft_printf(INPUT_5);
 	printf(HEADER_1(" (len = %i - ft_printf)") "\n\n", len);
 }
-

@@ -17,7 +17,6 @@ static int	handle_str_char(char format, va_list args)
 	int		count;
 	char	*str;
 	char	c;
-	int		nbr;
 
 	count = 0;
 	if (format == 's')
@@ -29,16 +28,6 @@ static int	handle_str_char(char format, va_list args)
 	{
 		c = va_arg(args, int);
 		count += ft_putchar(c);
-	}
-	else if (format == 'x')
-	{
-		nbr = va_arg(args, int);
-		count += ft_print_hexi_x(nbr);
-	}
-	else if (format == 'X')
-	{
-		nbr = va_arg(args, int);
-		count += ft_print_hexi_ux(nbr);
 	}
 	return (count);
 }
@@ -71,7 +60,19 @@ static int	handle_numbers(char format, va_list args)
 		u_nbr = va_arg(args, unsigned int);
 		count += ft_putunsigned(u_nbr);
 	}
-	return (count);
+	else if (format == 'x')
+	{
+		nbr = va_arg(args, int);
+		count += ft_print_hexi_x(nbr);
+	}
+	else if (format == 'X')
+	{
+		nbr = va_arg(args, int);
+		count += ft_print_hexi_ux(nbr);
+	}
+}
+return (count);
+
 }
 
 static int	handle_format(const char *format, va_list args)
@@ -88,13 +89,9 @@ static int	handle_format(const char *format, va_list args)
 	else if (*format == 'p')
 		count += handle_ptr(args);
 	else if (*format == 'x')
-		count += handle_str_char(*format, args);
+		count += handle_numbers(*format, args);
 	else if (*format == 'X')
-		count += handle_str_char(*format, args);
-	else
-	{
-		count += write(1, format, 1);
-	}
+		count += handle_numbers(*format, args);
 	return (count);
 }
 
@@ -113,8 +110,7 @@ int	ft_printf(const char *format, ...)
 			{
 				count += write(1, "%", 1);
 				return (count);
-			}	
-
+			}
 			format++;
 			count += handle_format(format, args);
 		}
