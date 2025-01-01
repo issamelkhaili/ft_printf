@@ -63,17 +63,15 @@ static int	handle_numbers(char format, va_list args)
 	else if (format == 'x')
 	{
 		nbr = va_arg(args, int);
-		count += ft_print_hexi_x(nbr);
+		count += ft_print_x(nbr, format);
 	}
 	else if (format == 'X')
 	{
 		nbr = va_arg(args, int);
-		count += ft_print_hexi_ux(nbr);
+		count += ft_print_x(nbr, format);
 	}
-}
-return (count);
-
-}
+	return (count);
+	}
 
 static int	handle_format(const char *format, va_list args)
 {

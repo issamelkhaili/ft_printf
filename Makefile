@@ -11,7 +11,6 @@ SRCS = ft_printf.c \
        takeu.c \
        takep.c \
        takex.c \
-       takeux.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-int	ft_print_hexi_ux(unsigned int num)
+int	ft_print_hexi_ux(unsigned int num ,format)
 {
 	char	*hex_chars;
 	char	hex[16];
