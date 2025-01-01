@@ -60,18 +60,13 @@ static int	handle_numbers(char format, va_list args)
 		u_nbr = va_arg(args, unsigned int);
 		count += ft_putunsigned(u_nbr);
 	}
-	else if (format == 'x')
-	{
-		nbr = va_arg(args, int);
-		count += ft_print_x(nbr, format);
-	}
-	else if (format == 'X')
+	else if (format == 'x' || format == 'X')
 	{
 		nbr = va_arg(args, int);
 		count += ft_print_x(nbr, format);
 	}
 	return (count);
-	}
+}
 
 static int	handle_format(const char *format, va_list args)
 {
@@ -86,9 +81,7 @@ static int	handle_format(const char *format, va_list args)
 		count += write(1, "%", 1);
 	else if (*format == 'p')
 		count += handle_ptr(args);
-	else if (*format == 'x')
-		count += handle_numbers(*format, args);
-	else if (*format == 'X')
+	else if (*format == 'x' || *format == 'X')
 		count += handle_numbers(*format, args);
 	return (count);
 }
